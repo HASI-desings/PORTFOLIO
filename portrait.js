@@ -34,6 +34,14 @@
     pointer.targetY = -(((e.clientY - r.top)/r.height) * 2 - 1);
   });
   canvas.addEventListener('mouseleave', ()=>{ pointer.targetX = 0; pointer.targetY = 0; });
+  canvas.addEventListener('touchmove', (e)=>{
+    const t = e.touches[0]; if(!t) return;
+    const r = canvas.getBoundingClientRect();
+    pointer.targetX = ((t.clientX - r.left)/r.width) * 2 - 1;
+    pointer.targetY = -(((t.clientY - r.top)/r.height) * 2 - 1);
+  }, { passive:true });
+
+  const isMobile = window.matchMedia('(max-width:980px)').matches;
 
   // ---------- shared shader chunks ----------
   const noiseGLSL = `
@@ -150,7 +158,16 @@
           chrome += (uMouse.x*0.5+0.5) * rim * 0.08;
 
           vec3 color = mix(mono, chrome, smoothstep(0.0,1.0,uProgress));
-          gl_FragColor = vec4(color, uOpacity);
+
+          /* Soft elliptical vignette so the photo's own background (trees,
+             wall, whatever) fades into the page instead of showing as a
+             flat rectangular card. */
+          vec2 d = (vUv - vec2(0.5, 0.44)) * vec2(1.15, 1.42);
+          float dist = length(d);
+          float mask = 1.0 - smoothstep(0.34, 0.5, dist);
+          if (mask < 0.01) discard;
+
+          gl_FragColor = vec4(color, uOpacity * mask);
         }
       `
     });
@@ -187,7 +204,16 @@
       for(let x=0; x<sampleSize; x++){
         const i = (y*sampleSize + x) * 4;
         const lum = (data[i]+data[i+1]+data[i+2]) / 3 / 255;
-        if (lum < 0.15) continue; // skip near-black background
+
+        // same elliptical vignette as the fragment shader, so particles
+        // only ever come from the "bust" region, never the photo's
+        // real-world background
+        const u = x/sampleSize, v = y/sampleSize;
+        const dx = (u - 0.5) * 1.15, dy = (v - 0.44) * 1.42;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist > 0.42) continue;
+        if (lum < 0.12) continue; // skip near-black (hair/shadow) noise
+
         const px = (x/sampleSize - 0.5) * planeW;
         const py = -(y/sampleSize - 0.5) * planeH;
         positions.push(px, py, (Math.random()-0.5)*0.4);
@@ -242,8 +268,9 @@
   }
 
   // ---------- scroll-driven progress ----------
-  let scrollT = 0; // 0..1 across hero height
+  let scrollT = 0; // 0..1 driving the morph
   function updateScrollProgress(){
+    if (isMobile) return; // mobile drives progress from the render loop instead
     const heroEl = document.getElementById('home');
     const rect = heroEl.getBoundingClientRect();
     const total = heroEl.offsetHeight - window.innerHeight;
@@ -260,6 +287,11 @@
 
     pointer.x += (pointer.targetX - pointer.x) * 0.06;
     pointer.y += (pointer.targetY - pointer.y) * 0.06;
+
+    if (isMobile){
+      // slow autoplay loop: portrait -> chrome -> particles -> back
+      scrollT = (Math.sin(t * 0.22) * 0.5 + 0.5);
+    }
 
     // map scrollT -> the three stages
     const stage2Start = 0.0, stage2Full = 0.55;
