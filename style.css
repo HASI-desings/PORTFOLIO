@@ -80,9 +80,20 @@ img{max-width:100%;display:block;}
 body.light .toggle-thumb{transform:translateX(20px);}
 
 /* ============ HERO ============ */
-.hero{min-height:100vh;display:flex;align-items:center;padding:120px clamp(20px,5vw,64px) 60px;}
+.hero{position:relative;}
 .hero-grid{
   width:100%; display:grid; grid-template-columns:1.1fr 1.4fr .9fr; gap:24px; align-items:center;
+  min-height:100vh; padding:120px clamp(20px,5vw,64px) 60px;
+}
+/* Desktop: pin the hero while the user scrolls through it — this is what
+   actually drives the portrait morph. Without extra scroll distance here,
+   there is nothing to scrub the shader against. */
+@media (min-width:981px){
+  .hero{min-height:320vh;}
+  .hero-grid{position:sticky; top:0;}
+}
+@media (max-width:980px){
+  .hero{min-height:100vh; display:flex; align-items:center;}
 }
 .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
 .pill{
@@ -107,9 +118,13 @@ body.light .toggle-thumb{transform:translateX(20px);}
 .hero-center{position:relative; height:min(66vh,620px); display:flex; align-items:center; justify-content:center;}
 #portrait-canvas{width:100%;height:100%;display:block;cursor:grab;}
 .scroll-hint{
-  position:absolute; bottom:-8px; left:50%; transform:translateX(-50%);
+  position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:8px;
   font-size:10px; letter-spacing:.16em; color:var(--muted); text-transform:uppercase;
+  white-space:nowrap; pointer-events:none;
+}
+@media (max-width:980px){
+  .scroll-hint{display:none;} /* mobile morph is drag/auto-driven, not scroll-driven — see portrait.js */
 }
 .scroll-hint-line{width:1px; height:26px; background:linear-gradient(var(--muted),transparent); animation:scrollpulse 2.2s ease-in-out infinite;}
 @keyframes scrollpulse{0%,100%{opacity:.2;}50%{opacity:1;}}
