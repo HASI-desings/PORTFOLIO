@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hussnain Sohail — Software / Web / App Developer</title>
+<meta name="description" content="Portfolio of Hussnain Sohail — Software Developer, Web Developer, Web Designer, App Developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+
+<div class="grain"></div>
+
+<header id="site-header">
+  <div class="wordmark">HUSSNAIN&nbsp;SOHAIL</div>
+  <nav class="main-nav">
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+  <button id="theme-toggle" aria-label="Toggle light and dark mode">
+    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+  </button>
+</header>
+
+<main>
+
+  <section id="home" class="hero">
+    <div class="hero-grid">
+
+      <div class="hero-left">
+        <div class="tag-row">
+          <span class="pill">SOFTWARE DEVELOPER</span>
+          <span class="pill">WEB DEVELOPER</span>
+          <span class="pill">WEB DESIGNER</span>
+          <span class="pill">APP DEVELOPER</span>
+        </div>
+
+        <h1 class="headline">
+          <span class="hl-strong">Architecting cross‑platform</span><br>
+          <span class="hl-muted">digital experiences.</span>
+        </h1>
+
+        <p class="sub">
+          Scalable software, intuitive interfaces, and robust mobile apps —
+          built with restraint, shipped with intent.
+        </p>
+
+        <a href="#projects" class="cta-link">
+          <span>View the work</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7.5 1.5M13 7L7.5 12.5" stroke="currentColor" stroke-width="1.4"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-center">
+        <canvas id="portrait-canvas"></canvas>
+        <div class="scroll-hint">
+          <span class="scroll-hint-line"></span>
+          <span>scroll to transform</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="credit-block">
+          <span class="credit-eyebrow">PORTFOLIO &amp; WORK OF</span>
+          <span class="credit-name">Hussnain Sohail</span>
+        </div>
+        <div class="stack-labels" aria-hidden="true">
+          <span style="--x:8%; --y:18%;">Java</span>
+          <span style="--x:62%; --y:6%;">React</span>
+          <span style="--x:20%; --y:52%;">Python</span>
+          <span style="--x:70%; --y:38%;">Linux</span>
+          <span style="--x:5%; --y:78%;">Web&nbsp;Tech</span>
+          <span style="--x:58%; --y:70%;">C++</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="section-head">
+      <span class="section-eyebrow">SELECTED WORK</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="project-list">
+
+      <article class="project-row" data-tint="1">
+        <div class="project-visual">
+          <div class="pv-scene pv-pos">
+            <div class="receipt">
+              <div class="r-line" style="width:70%"></div>
+              <div class="r-line" style="width:45%"></div>
+              <div class="r-line" style="width:85%"></div>
+              <div class="r-total"><span>TOTAL</span><span>Rs&nbsp;1,240</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <span class="project-index">01</span>
+          <h3>KING BURGER POS</h3>
+          <p>A point-of-sale system built for real counter speed — order entry, receipts, and inventory tracking designed around how a busy kitchen actually moves.</p>
+          <div class="tech-row"><span>React</span><span>Node</span><span>SQL</span></div>
+        </div>
+      </article>
+
+      <article class="project-row" data-tint="2">
+        <div class="project-visual">
+          <div class="pv-scene pv-plow">
+            <div class="plow-bars">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <span class="project-index">02</span>
+          <h3>PLOW</h3>
+          <p>A workflow / task tool exploring how ideas move from scattered notes to executed plans — clean data structures under a quiet interface.</p>
+          <div class="tech-row"><span>Python</span><span>APIs</span></div>
+        </div>
+      </article>
+
+      <article class="project-row" data-tint="3">
+        <div class="project-visual">
+          <div class="pv-scene pv-parallax">
+            <div class="pl-layer pl-1"></div>
+            <div class="pl-layer pl-2"></div>
+            <div class="pl-layer pl-3"></div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <span class="project-index">03</span>
+          <h3>PARALLAX</h3>
+          <p>A depth-driven scroll experience — layered motion used as a storytelling device rather than a decorative flourish.</p>
+          <div class="tech-row"><span>JavaScript</span><span>GSAP</span></div>
+        </div>
+      </article>
+
+      <article class="project-row" data-tint="4">
+        <div class="project-visual">
+          <div class="pv-scene pv-signal">
+            <svg viewBox="0 0 200 80" class="signal-svg">
+              <polyline points="0,60 20,60 30,20 45,70 60,40 80,55 100,15 120,55 140,45 160,60 180,30 200,60" />
+            </svg>
+          </div>
+        </div>
+        <div class="project-copy">
+          <span class="project-index">04</span>
+          <h3>OMNISIGNAL</h3>
+          <p>A monitoring dashboard that turns raw system signals into a single readable pulse — built for the moment something needs attention.</p>
+          <div class="tech-row"><span>React</span><span>WebSockets</span><span>Charts</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-head">
+      <span class="section-eyebrow">WHO'S BUILDING THIS</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-body">
+      <p>
+        I'm Hussnain — a software engineering student in Lahore, building
+        toward something bigger than any single app: products that feel
+        premium without the premium price tag. I care about the details
+        most people skip past, and I'd rather rebuild something from
+        scratch than ship it half-right.
+      </p>
+      <p>
+        Outside of code, I'm just trying to stay a genuinely good person
+        while I build. That part matters more to me than any of this.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="contact-inner">
+      <h2 class="contact-title">Let's build<br>something.</h2>
+      <a href="mailto:ranahasi302@gmail.com" class="contact-cta">
+        <span>ranahasi302@gmail.com</span>
+        <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7.5 1.5M13 7L7.5 12.5" stroke="currentColor" stroke-width="1.4"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 Hussnain Sohail</span>
+  <span class="footer-dot">•</span>
+  <span>Lahore, Pakistan</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="portrait.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
